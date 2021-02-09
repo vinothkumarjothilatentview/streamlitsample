@@ -9,7 +9,7 @@ import time
 # Add a selectbox to the sidebar:
 add_selectbox = st.sidebar.selectbox(
     'How would you like to be contacted?',
-    ('Email', 'Home phone', 'Mobile phone')
+    ('Email', 'Home phone', 'Mobile phone','sample','data')
 )
 
 st.write("Here's our first attempt To show The available components In Streamlit")
