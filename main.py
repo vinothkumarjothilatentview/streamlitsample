@@ -62,7 +62,7 @@ st.altair_chart(Death, use_container_width=True)
 
 
 
-st.components.v1.iframe("https://share.streamlit.io/vinothkumarjothilatentview/streamlitsample/main.py", width=1000, height=1000)
+# st.components.v1.iframe("https://share.streamlit.io/vinothkumarjothilatentview/streamlitsample/main.py", width=1000, height=1000)
 
 
 # st.map(df)
