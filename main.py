@@ -6,11 +6,11 @@ import altair as alt
 from PIL import Image
 
 
-imgPath = "D:\pythonws\streamlit\coronaimage.jpeg"
-csvPath = "D:\pythonws\streamlit\covid_19_edit.csv"
+# imgPath = "D:\pythonws\streamlit\coronaimage.jpeg"
+# csvPath = "D:\pythonws\streamlit\covid_19_edit.csv"
 
-# imgPath = "coronaimage.jpeg"
-# csvPath = "covid_19_edit.csv"
+imgPath = "coronaimage.jpeg"
+csvPath = "covid_19_edit.csv"
 
 # age = st.slider('How old are you?', 0, 130, 25)
 
