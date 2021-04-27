@@ -1,73 +1,58 @@
-import streamlit as st
-# To make things easier later, we're also importing numpy and pandas for
-# working with sample data.
-import numpy as np
 import pandas as pd
-import time
+import streamlit as st
+import numpy as np
+import altair as alt
+# import xlrd
+from PIL import Image
+
+# age = st.slider('How old are you?', 0, 130, 25)
 
 
-# Add a selectbox to the sidebar:
-add_selectbox = st.sidebar.selectbox(
-    'How would you like to be contacted?',
-    ('Email', 'phone', 'Mobile phone','sample','data')
-)
+# from datetime import datetime
 
-st.write("Here's our first attempt To show The available components In Streamlit")
+# start_time = st.slider(
+#      "When do you start?",
+#      value=datetime(2020, 12, 3),
+#      format="MM/DD/YY")
+# st.write("Start time:", start_time)
 
-st.write(pd.DataFrame({
-    'first column': [1, 2, 3, 4],
-    'second column': [10, 20, 30, 40]
-}))
+    
+# number = st.number_input('Insert a number')
+# st.write('The current number is ', number)
+st.write("""Covid-19 Dashboard""")
 
-st.write("Here's our first attempt at using data to create a Line chart:")
+image = Image.open('coronaimage.jpeg')
 
-st.line_chart(data=None, width=0, height=0, use_container_width=True)
-
-# Add a slider to the sidebar:
-add_slider = st.sidebar.slider(
-    'Select a range of values',
-    0.0, 100.0, (25.0, 75.0)
-)
-
-chart_data = pd.DataFrame(
-     np.random.randn(20, 3),
-     columns=['a', 'b', 'c'])
-
-st.line_chart(chart_data)
-
-map_data = pd.DataFrame(np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],columns=['lat', 'lon'])
-
-st.map(map_data)
-
-if st.checkbox('Show dataframe'):
-    chart_data = pd.DataFrame(
-       np.random.randn(20, 3),
-       columns=['a', 'b', 'c'])
-
-    st.line_chart(chart_data)
+st.image(image, caption='Corona Warriors')
 
 
-latest_iteration = st.empty()
-bar = st.progress(0)
+col1, col2, col3 = st.beta_columns(3)
+with col1:
+    st.header("Confirmed Cases")
+    st.write("15061919")
+with col2:
+    st.header("Active Cases")
+    st.write("1929329")
 
-for i in range(100):
-  # Update the progress bar with each iteration.
-  latest_iteration.text(f'Iteration {i+1}')
-  bar.progress(i + 1)
-  time.sleep(0.1)
+with col3:
+    st.header("Death")
+    st.write("178769")
 
-# '...and now we\'re done!'
 
-# col1, col2, col3 = st.beta_columns(3)
 
-# with col1:
-#     st.header("A cat")
-#     st.image("https://static.streamlit.io/examples/cat.jpg", use_column_width=True)
+df = pd.read_csv('covid_19_edit.csv')
 
-# with col2:
-#     st.header("A dog")
-#     st.image("https://static.streamlit.io/examples/dog.jpg", use_column_width=True)
+st.line_chart(df)
+# df = pd.DataFrame(
+#  np.random.randn(50, 20),
+#  columns=('col %d' % i for i in range(20)))
+st.dataframe(df)
+st.area_chart(df)
 
-# with col3:
-#     st.header("An owl")
-#     st.image("https://static.streamlit.io/examples/owl.jpg", use_column_width=True)
+Death = alt.Chart(df).mark_circle().encode(
+     x='Cured/Discharged', y='Confirmed Cases', size='Death', color='Death', tooltip=['Date', 'Confirmed Cases', 'Death'])
+st.altair_chart(Death, use_container_width=True)
+
+# st.map(df)
+# st.bar_chart(df)
+# print(df.DATE)
