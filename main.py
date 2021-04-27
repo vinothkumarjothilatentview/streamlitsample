@@ -5,6 +5,13 @@ import altair as alt
 # import xlrd
 from PIL import Image
 
+
+imgPath = "D:\pythonws\streamlit\coronaimage.jpeg"
+csvPath = "D:\pythonws\streamlit\covid_19_edit.csv"
+
+# imgPath = "coronaimage.jpeg"
+# csvPath = "covid_19_edit.csv"
+
 # age = st.slider('How old are you?', 0, 130, 25)
 
 
@@ -21,7 +28,7 @@ from PIL import Image
 # st.write('The current number is ', number)
 st.write("""Covid-19 Dashboard""")
 
-image = Image.open('coronaimage.jpeg')
+image = Image.open(imgPath)
 
 st.image(image, caption='Corona Warriors')
 
@@ -40,7 +47,7 @@ with col3:
 
 
 
-df = pd.read_csv('covid_19_edit.csv')
+df = pd.read_csv(csvPath)
 
 st.line_chart(df)
 # df = pd.DataFrame(
@@ -52,6 +59,11 @@ st.area_chart(df)
 Death = alt.Chart(df).mark_circle().encode(
      x='Cured/Discharged', y='Confirmed Cases', size='Death', color='Death', tooltip=['Date', 'Confirmed Cases', 'Death'])
 st.altair_chart(Death, use_container_width=True)
+
+
+
+st.components.v1.iframe("https://share.streamlit.io/vinothkumarjothilatentview/streamlitsample/main.py", width=1000, height=1000)
+
 
 # st.map(df)
 # st.bar_chart(df)
